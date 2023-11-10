@@ -2,5 +2,6 @@
 	"name": "com.isostopy.assetbundles",
 	"displayName": "AssetBundles Package",
 	"version":"0.1.0",
-	"description": "Paquete que permite crear y cargar AssetBundles"
+	"description": "Paquete que permite crear y cargar AssetBundles",
+	"author": "isostopy"
 }

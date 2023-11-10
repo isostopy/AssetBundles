@@ -81,6 +81,10 @@ namespace Isostopy.AssetBundles.Editor
 			_scrollviewPosition = EditorGUILayout.BeginScrollView(_scrollviewPosition);
 			{
 				string[] bundleNames = AssetDatabase.GetAllAssetBundleNames();
+				if (bundleNames.Length == 0)
+				{
+					EditorGUILayout.LabelField("\t (none)");
+				}
 				foreach (string bundleName in bundleNames)
 				{
 					DrawBundleContent(bundleName);
