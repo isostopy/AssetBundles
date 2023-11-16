@@ -47,6 +47,11 @@ namespace Isostopy.AssetBundles
 		/// <summary> Carga los asset bundles de la lista. </summary>
 		public void LoadBundles()
 		{
+			if (loading)
+			{
+				return;
+			}
+
 			StartCoroutine(LoadBundlesRoutine());
 		}
 
@@ -54,6 +59,7 @@ namespace Isostopy.AssetBundles
 		private IEnumerator LoadBundlesRoutine()
 		{
 			loading = true;
+			progress = 0;
 
 			// Cargar todos los bundles de la lista.
 			foreach (AssetBundleLoadData bundle in bundlesToLoad)

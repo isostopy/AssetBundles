@@ -29,7 +29,7 @@ namespace Isostopy.AssetBundles.Editor
 			get
 			{
 				if (instance.buildTarget == 0)
-					instance.buildTarget = EditorUserBuildSettings.activeBuildTarget;
+					instance.buildTarget = BuildTarget.StandaloneWindows;
 				return instance.buildTarget;
 			}
 			set => instance.buildTarget = value;
@@ -40,7 +40,7 @@ namespace Isostopy.AssetBundles.Editor
 		// -----------------------------------------------------------------
 
 		/// <summary> Guarda las settings en un archivo para que se conserven entre sesiones. </summary>
-		public void SaveSettings()
+		public void Save()
 		{
 			Save(true);
 		}
