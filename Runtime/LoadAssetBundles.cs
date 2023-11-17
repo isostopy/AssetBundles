@@ -24,8 +24,7 @@ namespace Isostopy.AssetBundles
 		/// Evento disparado al terminar de cargar los asset bundles.
 		[Space] public UnityEvent onBundlesLoaded = new();
 
-
-		// ----------------------------------------------------------------------------
+		// -------------------------------------
 
 		/// <summary> Si estamos o no cargando algun bundle ahora mismo. </summary>
 		public bool Loading => loading;
@@ -98,5 +97,11 @@ namespace Isostopy.AssetBundles
 
 			onBundlesLoaded.Invoke();
 		}
+
+
+		// ----------------------------------------------------------------------------
+
+		[ContextMenu("Clear Cache")]
+		private void ClearCache() => AssetBundleLoader.ClearCache();
 	}
 }

@@ -61,7 +61,7 @@ namespace Isostopy.AssetBundles
 		}
 
 
-		// ----------------------------------------------------------------------------
+		// -------------------------------------
 
 		/// Corrutina que carga un asset bundle desde una url.
 		public static IEnumerator LoadAssetBundleFromUrlRoutine(string url, uint version, AssetBundleLoadProgress loadProgressRef, UnityAction<AssetBundle> completed)
@@ -127,7 +127,7 @@ namespace Isostopy.AssetBundles
 		}
 
 
-		// ----------------------------------------------------------------------------
+		// ---------------------------------------
 
 		private static Coroutine StartCoroutine(IEnumerator routine)
 		{
@@ -143,5 +143,40 @@ namespace Isostopy.AssetBundles
 		{
 			private void Start() => DontDestroyOnLoad(this);
 		}
+
+
+		// ----------------------------------------------------------------------------
+		#region Utilities
+
+		/// ¿Esta el bundle indicado guardado en cache?
+		public static bool IsBundleCached(AssetBundleLoadData data)
+		{
+			return IsBundleCached(data.path, data.version);
+		}
+
+		public static bool IsBundleCached(string path, uint version = 0)
+		{
+			return Caching.IsVersionCached(path, (int)version);
+			// Esto esta deprecated pero es lo mejor que tenemos para saber si esta en cache.
+		}
+
+		/// <summary> ¿Se ha cargado ya el bundle indicado usando la clase AssetBundleLoader? </summary>
+		public static bool IsBundleLoaded(AssetBundleLoadData data)
+		{
+			return IsBundleLoaded(data.path);
+		}
+
+		public static bool IsBundleLoaded(string path)
+		{
+			return loadedBundles.ContainsKey(path);
+		}
+
+		/// <summary> Borra los assets bundle en cache. </summary>
+		public static void ClearCache()
+		{
+			Caching.ClearCache();
+		}
+
+		#endregion
 	}
 }

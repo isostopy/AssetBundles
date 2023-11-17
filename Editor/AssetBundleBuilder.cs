@@ -78,20 +78,19 @@ namespace Isostopy.AssetBundles.Editor
 			bundlesContent.Add("\t" + bundleName);
 
 			string[] assetPaths = AssetDatabase.GetAssetPathsFromAssetBundle(bundleName);
-			List<string> drawnDependencies = new();
-
 			if (assetPaths.Length == 0)
 			{
 				bundlesContent.Add("\t\t (none)");
 				return;
 			}
 
+			List<string> drawnDependencies = new();
 			foreach (string assetPath in assetPaths)
 			{
 				bundlesContent.Add("\t\t" + Path.GetFileName(assetPath));
 
-				string[] assetDependeincies = AssetDatabase.GetDependencies(assetPath);
-				foreach (string assetDependency in assetDependeincies)
+				string[] assetDependencies = AssetDatabase.GetDependencies(assetPath);
+				foreach (string assetDependency in assetDependencies)
 				{
 					if (drawnDependencies.Contains(assetDependency))
 						continue;
@@ -100,7 +99,7 @@ namespace Isostopy.AssetBundles.Editor
 					if (assetDependency.EndsWith(".cs"))
 						continue;
 
-					bundlesContent.Add("\t\t[ " + Path.GetFileName(assetDependency) + " ]");
+					bundlesContent.Add("\t\t <i> [ " + Path.GetFileName(assetDependency) + " ] </i>"); 
 					drawnDependencies.Add(assetDependency);
 				}
 			}
@@ -142,9 +141,11 @@ namespace Isostopy.AssetBundles.Editor
 		{
 			_scrollviewPosition = EditorGUILayout.BeginScrollView(_scrollviewPosition);
 			{
+				GUIStyle richTextStyle = new GUIStyle(GUI.skin.label) { richText = true };
+
 				foreach (string line in bundlesContent)
 				{
-					EditorGUILayout.LabelField(line);
+					EditorGUILayout.LabelField(line, richTextStyle);
 				}
 			}
 			EditorGUILayout.EndScrollView();
