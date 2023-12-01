@@ -36,7 +36,7 @@ namespace Isostopy.AssetBundles.Editor
 		#region Open Window
 
 		/// <summary> Abre la ventana para elgir las settings con las que se crean los asset bundles. </summary>
-		[MenuItem("Isostopy/AssetBundle Build Settings")]
+		[MenuItem("Isostopy/AssetBundles/AssetBundle Build Settings")]
 		public static void OpenWindow()
 		{
 			EditorWindow.GetWindow(typeof(AssetBundleBuilder), false, "AssetBundle Build Settings");
@@ -187,7 +187,7 @@ namespace Isostopy.AssetBundles.Editor
 
 		/// <summary> Crea los AssetBundles con las settings guardadas. </summary>
 		[MenuItem("Assets/Build AssetBundles")]
-		[MenuItem("Isostopy/Build AssetBundles")]
+		[MenuItem("Isostopy/AssetBundles/Build AssetBundles")]
 		public static void BuildAssetBundles()
 		{
 			buildSettings.Save();
@@ -200,6 +200,19 @@ namespace Isostopy.AssetBundles.Editor
 
 			if (!buildPath.StartsWith("Assets/"))
 				EditorUtility.RevealInFinder(buildPath);
+		}
+
+		#endregion
+
+
+		// --------------------------------
+		#region Clear Cache
+
+		/// <summary> Borra los assets bundle en cache. </summary>
+		[MenuItem("Isostopy/AssetBundles/Clear AssetBundles Cache")]
+		public static void ClearCache()
+		{
+			Caching.ClearCache();
 		}
 
 		#endregion

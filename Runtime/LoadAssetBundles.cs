@@ -97,11 +97,5 @@ namespace Isostopy.AssetBundles
 
 			onBundlesLoaded.Invoke();
 		}
-
-
-		// ----------------------------------------------------------------------------
-
-		[ContextMenu("Clear Cache")]
-		private void ClearCache() => AssetBundleLoader.ClearCache();
 	}
 }
