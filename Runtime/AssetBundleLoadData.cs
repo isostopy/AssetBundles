@@ -61,7 +61,7 @@ namespace Isostopy.AssetBundles
 
 		// ---------------------------------------------------------------------------
 
-		/// <summary> Información necesaria para cargar un asset bundle en una plataforma concreta. </summary>
+		/// <summary> Informacion necesaria para cargar un asset bundle en una plataforma concreta. </summary>
 		[System.Serializable]
 		public class PlatformData
 		{
@@ -76,7 +76,14 @@ namespace Isostopy.AssetBundles
 					switch (loadMethod)
 					{
 						case LoadMethod.StreamingAssets:
-							return Application.streamingAssetsPath + "/" + path;
+							var streamingAssetsPath = Application.streamingAssetsPath + "/" + path;
+							if (Application.platform == RuntimePlatform.IPhonePlayer)
+							{
+								// iOS necesita este prefijo delante de la ruta que unity devuelve para streaming assets.
+								streamingAssetsPath = "file:/" + streamingAssetsPath;
+							}
+							return streamingAssetsPath;
+
 						case LoadMethod.PersistentData:
 							return Application.persistentDataPath + "/" + path;
 						default:
