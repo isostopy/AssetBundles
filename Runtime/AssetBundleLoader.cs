@@ -79,6 +79,8 @@ namespace Isostopy.AssetBundles
 
 			if (request.result != UnityWebRequest.Result.Success)
 			{
+				Debug.LogError("Error descargando el asset bundle desde [" + url + "] - " + request.error);
+
 				completed?.Invoke(null);
 				yield break;
 			}
