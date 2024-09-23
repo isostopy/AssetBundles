@@ -89,19 +89,19 @@ namespace Isostopy.AssetBundles.Editor
 			{
 				bundlesContent.Add("\t\t" + Path.GetFileName(assetPath));
 
-				string[] assetDependencies = AssetDatabase.GetDependencies(assetPath);
-				foreach (string assetDependency in assetDependencies)
-				{
-					if (drawnDependencies.Contains(assetDependency))
-						continue;
-					if (AssetDatabase.GetImplicitAssetBundleName(assetDependency) != "")
-						continue;
-					if (assetDependency.EndsWith(".cs"))
-						continue;
+				//string[] assetDependencies = AssetDatabase.GetDependencies(assetPath);
+				//foreach (string assetDependency in assetDependencies)
+				//{
+				//	if (drawnDependencies.Contains(assetDependency))
+				//		continue;
+				//	if (AssetDatabase.GetImplicitAssetBundleName(assetDependency) != "")
+				//		continue;
+				//	if (assetDependency.EndsWith(".cs"))
+				//		continue;
 
-					bundlesContent.Add("\t\t <i> [ " + Path.GetFileName(assetDependency) + " ] </i>"); 
-					drawnDependencies.Add(assetDependency);
-				}
+				//	bundlesContent.Add("\t\t <i> [ " + Path.GetFileName(assetDependency) + " ] </i>"); 
+				//	drawnDependencies.Add(assetDependency);
+				//}
 			}
 		}
 
