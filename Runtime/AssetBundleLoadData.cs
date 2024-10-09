@@ -65,6 +65,7 @@ namespace Isostopy.AssetBundles
 		[System.Serializable]
 		public class PlatformData
 		{
+			[SerializeField] private string editorTitle = "";
 			public RuntimePlatform platform = RuntimePlatform.WindowsEditor;
 			public LoadMethod loadMethod = LoadMethod.URL;
 			public string path = "";
